@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 set -e
 
+export NETWORK_PASSPHRASE="Stanford Net; March 2020"
+
 export STELLAR_HOME="/opt/stellar"
 export PGHOME="$STELLAR_HOME/postgresql"
 export SUPHOME="$STELLAR_HOME/supervisor"
