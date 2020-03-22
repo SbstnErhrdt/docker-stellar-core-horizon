@@ -1,4 +1,4 @@
-FROM stellar/base:latest
+FROM ese7en/stellar-base
 
 MAINTAINER Bartek Nowotarski <bartek@stellar.org>
 
