@@ -250,13 +250,14 @@ function init_stellar_core() {
 		popd
 	fi
 
-	if [ "$NETWORK" == "testnet" ]; then
-		# Start local history server
-		mkdir -p /tmp/stellar-core/history/vs
-		pushd /tmp/stellar-core/history/vs
-		webfsd -F -p 1570 > /dev/null 2>&1 &
-		popd
-	fi
+  # todo: open the port for the archive
+	# if [ "$NETWORK" == "testnet" ]; then
+	# 	# Start local history server
+	# 	mkdir -p /tmp/stellar-core/history/vs
+	# 	pushd /tmp/stellar-core/history/vs
+	# 	webfsd -F -p 1570 > /dev/null 2>&1 &
+	# 	popd
+	# fi
 
 	touch .quickstart-initialized
 	popd
