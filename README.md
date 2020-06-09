@@ -1,5 +1,11 @@
-# Stellar Quickstart Docker Image
+# Stellar Quickstart Docker Image (adaption)
 
+Changes
+* webfs instead of python (proposed to the main directory since python terminates randomly)
+* changes with regards to the configuration
+
+
+Old desc:
 This project provides a simple way to incorporate stellar-core and horizon into your private infrastructure, provided that you use docker.
 
 This image provide a default, non-validating, ephemeral configuration that should work for most developers.  By configuring a container using this image with a host-based volume (described below in the "Usage" section) an operator gains access to full configuration customization and persistence of data.
@@ -91,13 +97,14 @@ It is recommended that you stop the container before editing any of these files,
 Managing UIDs between a docker container and a host volume can be complicated.  At present, this image simply tries to create a UID that does not conflict with the host system by using a preset UID:  10011001.  Currently there is no way to customize this value.  All data produced in the host volume be owned by 10011001.  If this UID value is inappropriate for your infrastructure we recommend you fork this project and do a find/replace operation to change UIDs.  We may improve this story in the future if enough users request it.
 
 ## Ports
-
-| Port  | Service      | Description          |
-|-------|--------------|----------------------|
-| 5432  | postgresql   | database access port |
-| 8000  | horizon      | main http port       |
-| 11625 | stellar-core | peer node port       |
-| 11626 | stellar-core | main http port       |
+(updated)
+| Port  | Service      | Description            |
+|-------|--------------|------------------------|
+| 5432  | postgresql   | database access port   |
+| 8000  | horizon      | main http port         |
+| 11625 | stellar-core | peer node port         |
+| 11626 | stellar-core | main http port         |
+| 1570  | history      | http directory endpoint|
 
 
 ### Security Considerations
