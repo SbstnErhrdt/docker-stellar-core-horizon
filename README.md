@@ -1,11 +1,23 @@
 # Stellar Quickstart Docker Image (adaption)
 
-Changes
+## Changes
 * webfs instead of python (proposed to the main directory since python terminates randomly)
 * changes with regards to the configuration
 
+## Usage
 
-Old desc:
+```
+docker run --rm -it \
+    -p "8000:8000" \
+    -p "11626:11626" \
+    -p "11625:11625" \
+    -p "1570:1570" \
+    --name stellar \
+    ese7en/stellar --testnet
+```
+
+
+## Old Readme:
 This project provides a simple way to incorporate stellar-core and horizon into your private infrastructure, provided that you use docker.
 
 This image provide a default, non-validating, ephemeral configuration that should work for most developers.  By configuring a container using this image with a host-based volume (described below in the "Usage" section) an operator gains access to full configuration customization and persistence of data.
@@ -40,7 +52,7 @@ Ephermeral mode is provided to support development and testing environments.  Ev
 Starting an ephemeral node is simple, just craft a `docker run` command to launch the appropriate image but *do not mount a volume*.  To craft your docker command, you need the network name you intend to run against and the flags to expose the ports your want available (See the section named "Ports" below to learn about exposing ports).  Thus, launching a testnet node while exposing horizon would be:
 
 ```shell
-$ docker run --rm -it -p "8000:8000" --name stellar stellar/quickstart --testnet
+$ docker run --rm -it -p "8000:8000" --name stellar ese7en/stellar --testnet
 ```  
 
 As part of launching, an ephemeral mode container will generate a random password for securing the postgresql service and will output it to standard out.  You may use this password (provided you have exposed the postgresql port) to access the running postgresql database (See the section "Accessing Databases" below).
@@ -53,7 +65,7 @@ In comparison to ephemeral mode, persistent mode is more complicated to operate,
 Starting a persistent mode container is the same as the ephemeral mode with one exception:
 
 ```shell
-$ docker run --rm -it -p "8000:8000" -v "/home/scott/stellar:/opt/stellar" --name stellar stellar/quickstart --testnet
+$ docker run --rm -it -p "8000:8000" -v "/home/scott/stellar:/opt/stellar" --name stellar ese7en/stellar --testnet
 ```
 
 The `-v` option in the example above tells docker to mount the host directory `/home/scott/stellar` into the container at the `/opt/stellar` path.  You may customize the host directory to any location you like, simply make sure to use the same value every time you launch the container.  Also note: an absolute directory path is required.  The second portion of the volume mount (`/opt/stellar`) should never be changed.  This special directory is checked by the container to see if it is mounted from the host system which is used to see if we should launch in ephemeral or persistent mode.
@@ -168,7 +180,7 @@ Below is a list of various ways you might want to launch the quickstart containe
 
 *Launch an ephemeral pubnet node in the background:*
 ```
-$ docker run -d -p "8000:8000" --name stellar stellar/quickstart --pubnet
+$ docker run -d -p "8000:8000" --name stellar ese7en/stellar --pubnet
 ```
 
 *Launch an ephemeral testnet node in the foreground, exposing all ports:*
@@ -178,7 +190,7 @@ $ docker run --rm -it \
     -p "11626:11626" \
     -p "11625:11625" \
     --name stellar \
-    stellar/quickstart --testnet
+    ese7en/stellar --testnet
 ```
 
 *Setup a new persistent node using the host directory `/str`:*
@@ -186,7 +198,7 @@ $ docker run --rm -it \
 $ docker run -it --rm \
     -v "/str:/opt/stellar" \
     --name stellar \
-    stellar/quickstart --pubnet
+    ese7en/stellar --pubnet
 ```
 
 *Start a background persistent container for an already initialized host directory:*
@@ -195,7 +207,7 @@ $ docker run -d \
     -v "/str:/opt/stellar" \
     -p "8000:8000" \
     --name stellar \
-    stellar/quickstart --pubnet
+    ese7en/stellar --pubnet
 ```
 
 ## Troubleshooting
