@@ -79,11 +79,11 @@ function process_args() {
 	case "$NETWORK" in
 	testnet)
     export NETWORK_PASSPHRASE="Stanford Net; March 2020"
-    export HISTORY_ARCHIVE_URLS="http://95.217.87.26:1570"
+    export HISTORY_ARCHIVE_URLS="http://stellar0.erhardt.net:1570"
     ;;
 	pubnet)
     export NETWORK_PASSPHRASE="Stanford Net; March 2020"
-    export HISTORY_ARCHIVE_URLS="http://95.217.87.26:1570"
+    export HISTORY_ARCHIVE_URLS="http://stellar0.erhardt.net:1570"
     ;;
 	standalone)
     export NETWORK_PASSPHRASE="Stanford Net; March 2020"
